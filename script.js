@@ -13,17 +13,17 @@ window.addEventListener('DOMContentLoaded', () => {
         const midi = new Midi(event.target.result);
         const json = midi.toJSON();
 
-        const C4_FREQ = 261.63; // Hz
         const simplifiedNotes = [];
 
         // Loop through all tracks and notes
         json.tracks.forEach(track => {
           track.notes.forEach(note => {
-            // Convert MIDI note to frequency
-            const freq = 440 * Math.pow(2, (note.midi - 69) / 12);
-            // Normalize to C4
-            const pitch = freq / C4_FREQ;
-            // Use note.time for start time
+            // Calculate pitch relative to C4 (MIDI 60)
+            let pitch = Math.pow(2, (note.midi - 60) / 12);
+            // Round to 3 decimal places
+            pitch = Math.round(pitch * 1000) / 1000;
+
+            // Add pitch and time
             simplifiedNotes.push({
               pitch: pitch,
               time: note.time || 0
@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
           });
         });
 
-        // Output as JSON
+        // Show the simplified JSON
         outputDiv.textContent = JSON.stringify(simplifiedNotes, null, 2);
 
       } catch (err) {
