@@ -22,11 +22,12 @@ window.addEventListener('DOMContentLoaded', () => {
             let pitch = Math.pow(2, (note.midi - 60) / 12);
             // Round to 3 decimal places
             pitch = Math.round(pitch * 1000) / 1000;
+            let time = Math.round((note.time || 0) * 1000) / 1000;
 
             // Add pitch and time
             simplifiedNotes.push({
-              pitch: pitch,
-              time: note.time || 0
+              p: pitch,
+              t: time || 0
             });
           });
         });
