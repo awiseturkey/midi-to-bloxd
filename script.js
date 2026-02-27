@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const midi = new Midi(event.target.result);
         const json = midi.toJSON();
 
-        const simplifiedNotes = [];
+        let simplifiedNotes = [];
 
         // Loop through all tracks and notes
         json.tracks.forEach(track => {
@@ -32,6 +32,8 @@ window.addEventListener('DOMContentLoaded', () => {
             simplifiedNotes.sort((a, b) => a.t - b.t);
           });
         });
+
+        simplifiedNotes = simplifiedNotes.flatMap(n => Object.values(n));
 
         // Show the simplified JSON
         outputDiv.textContent = JSON.stringify(simplifiedNotes);

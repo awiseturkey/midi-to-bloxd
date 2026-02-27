@@ -31,20 +31,18 @@ function playMusicFromJSON(data) {
   const notes = JSON.parse(data); // parse your JSON data
 
 
-  notes.forEach(note => {
-    console.log(note);
-    const p = note.p;
-    const t = note.t;
+  for(let i = 0; i < notes.length; i += 2) {
+    const p = notes[i];
+    const t = notes[i + 1];
 
     // Schedule the note to play at time t
     timeoutManager.setTimeout(() => {
       // Use p directly as pitch
-      console.log("executed");
-	  for(const id of api.getPlayerIds()) {
+	    for(const id of api.getPlayerIds()) {
 	      api.playSound(id, "harp_pling", 1, p);
 	    }
     }, Math.round(t * 30));
-  });
+  }
 }
 
 tick = () => {
