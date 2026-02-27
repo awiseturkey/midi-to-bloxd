@@ -23,11 +23,12 @@ window.addEventListener('DOMContentLoaded', () => {
             // Round to 2 decimal places
             pitch = Math.round(pitch * 100) / 100;
             let time = Math.round((note.time || 0) * 100) / 100;
-
+            let volume = note.velocity != null ? Math.floor((note.velocity/127)*100)/100 : 1;
             // Add pitch and time
             simplifiedNotes.push({
               p: pitch,
-              t: time || 0
+              t: time || 0,
+              v: volume
             });
             simplifiedNotes.sort((a, b) => a.t - b.t);
           });
