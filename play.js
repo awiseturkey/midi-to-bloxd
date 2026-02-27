@@ -31,7 +31,7 @@ function playMusicFromJSON(data) {
   const notes = JSON.parse(data); // parse your JSON data
 
 
-  for(let i = 0; i < notes.length; i += 2) {
+  for(let i = 0; i < notes.length; i += 3) {
     const p = notes[i];
     const t = notes[i + 1];
     const v = notes[i + 2];
