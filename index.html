@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <p id="output"></p>
   <meta charset="UTF-8" />
   <title>MIDI to JSON Converter</title>
   <script src="https://unpkg.com/@tonejs/midi"></script>
@@ -14,6 +15,8 @@
   <h1>MIDI to JSON Converter</h1>
   <p>Drop a MIDI file to convert it to JSON with pitch values (C4 = 1.0)</p>
   <input type="file" accept=".mid,.midi" id="fileInput" />
-  <div id="output"></div>
+  <button id="copyBtn">Copy Output</button>
+  
+  <div id="output" tabindex="0"></div>
 </body>
 </html>   
